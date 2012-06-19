@@ -15,6 +15,8 @@ namespace ColorCatcher
 		{
 			var p = new Prototype();
 
+			Lottery.CheckAndFix();
+
 			while (p.Run()) { }
 		}
 
@@ -146,7 +148,7 @@ Choose: ");
 
 		private void Analyse(List<Lottery_result> lr_list)
 		{
-			Console.WriteLine("\nLatest: " + lr_list[lr_list.Count - 1]);
+			Console.WriteLine("\nLatest: " + lr_list[0]);
 
 			int[] hist_red = new int[33];
 			int[] hist_blue = new int[16];

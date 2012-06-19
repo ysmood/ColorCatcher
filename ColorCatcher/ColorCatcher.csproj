@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lottery.cs">
+      <DependentUpon>Lottery.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Lottery.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

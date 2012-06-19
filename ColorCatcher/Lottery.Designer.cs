@@ -1188,7 +1188,7 @@ namespace ColorCatcher.LotteryTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SQLite.SQLiteConnection();
-            this._connection.ConnectionString = global::ColorCatcher.Properties.Settings.Default.lotteryConnectionString1;
+            this._connection.ConnectionString = global::ColorCatcher.Properties.Settings.Default.lotteryConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
