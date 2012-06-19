@@ -1,0 +1,1 @@
+A simple dual-colored lottery analyzer.
