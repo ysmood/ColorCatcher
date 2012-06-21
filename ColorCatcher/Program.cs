@@ -9,18 +9,39 @@ using System.Data.SQLite;
 
 namespace ColorCatcher
 {
-	class Prototype
+	public class Data
 	{
-		static void Main(string[] args)
+		private static void Main(string[] args)
 		{
-			var p = new Prototype();
+			var p = new Data();
 
 			Lottery.CheckAndFix();
 
 			while (p.Run()) { }
 		}
 
-		public bool Run()
+		public List<Lottery_result> Lottery_list
+		{
+			get
+			{
+				if (lottery_list == null)
+				{
+					Lottery.CheckAndFix();
+
+					lottery_list = new List<Lottery_result>();
+					Init_lottery_result_list(lottery_list);
+
+					if (lottery_list.Count == 0)
+					{
+						lottery_list = Get_all_results();
+						Save_all_results(lottery_list);
+					}
+				}
+				return lottery_list;
+			}
+		}
+
+		private bool Run()
 		{
 			Console.Write(@"
 *****************************************
@@ -28,19 +49,18 @@ namespace ColorCatcher
 2. Get base data.
 Choose: ");
 
-			List<Lottery_result> lr_list;
 			string re = Console.ReadLine();
 			switch (re)
 			{
 				case "1":
-					lr_list = new List<Lottery_result>();
-					Init_lottery_result_list(lr_list);
-					Analyse(lr_list);
+					lottery_list = new List<Lottery_result>();
+					Init_lottery_result_list(lottery_list);
+					Analyse(lottery_list);
 					return true;
 
 				case "2":
-					lr_list = Get_all_results();
-					Save_all_results(lr_list);
+					lottery_list = Get_all_results();
+					Save_all_results(lottery_list);
 					Console.WriteLine("Getting base data done.");
 					return true;
 
@@ -183,5 +203,7 @@ Choose: ");
 			}
 			return dict;
 		}
+
+		private List<Lottery_result> lottery_list;
 	}
 }

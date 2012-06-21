@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ColorCatcher
 {
-	class Lottery_result
+	public class Lottery_result
 	{
 		public DateTime Date
 		{
