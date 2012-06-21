@@ -55,6 +55,8 @@ namespace Display
 			int width = red + margin + blue;
 			UInt32[] pixel_data = new UInt32[width * catcherData.Lottery_list.Count];
 
+			UInt32 pixel_color = 0xff000000;
+
 			for (int i = 0; i < width * catcherData.Lottery_list.Count; i++)
 			{
 				pixel_data[i] = 0xffffffff;
@@ -65,10 +67,10 @@ namespace Display
 				long offset = width * y;
 				foreach (var item in catcherData.Lottery_list[y].Red_nums)
 				{
-					pixel_data[offset + item - 1] = 0xff000000;
+					pixel_data[offset + item - 1] = pixel_color;
 				}
-				pixel_data[offset + red + margin - 1] = 0x0000000;
-				pixel_data[offset + red + margin + catcherData.Lottery_list[y].Blue_num - 1] = 0xff000000;
+				pixel_data[offset + red + margin - 1] = 0x0;
+				pixel_data[offset + red + margin + catcherData.Lottery_list[y].Blue_num - 1] = pixel_color;
 			}
 			img_display.Source = BitmapSource.Create(width, catcherData.Lottery_list.Count, 72, 72, PixelFormats.Bgra32, null, pixel_data, ((width * 32 + 31) & ~31) / 8);
 		}
@@ -86,8 +88,8 @@ namespace Display
 			DoubleAnimation da = new DoubleAnimation()
 			{
 				Duration = TimeSpan.FromSeconds(img_display.ActualHeight / 1000),
-				From = 0,
-				To = -img_display.ActualHeight,
+				From = -img_display.ActualHeight,
+				To = 0,
 				FillBehavior = FillBehavior.Stop
 			};
 			da.Completed += new EventHandler(da_Completed);
